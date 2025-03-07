@@ -20,7 +20,7 @@ public class SecurityConfig {
     public SecurityWebFilterChain securityWebFilterChain(ServerHttpSecurity http) {
         return http
                 .authorizeExchange(exchanges -> exchanges
-                        .pathMatchers("/greeting").permitAll() // Permitir acceso público a /greeting
+                        .pathMatchers("/greeting").permitAll() // Ruta pública
                         .anyExchange().authenticated() // El resto requiere autenticación
                 )
                 .httpBasic(withDefaults()) // Habilitar autenticación básica
@@ -32,9 +32,9 @@ public class SecurityConfig {
     public MapReactiveUserDetailsService userDetailsService() {
         PasswordEncoder encoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
         UserDetails user = User.builder()
-                .username("user")
-                .password(encoder.encode("password")) // Codificar la contraseña
-                .roles("USER")
+                .username("user") // Nombre de usuario
+                .password(encoder.encode("password")) // Contraseña codificada
+                .roles("USER") // Rol del usuario
                 .build();
         return new MapReactiveUserDetailsService(user);
     }

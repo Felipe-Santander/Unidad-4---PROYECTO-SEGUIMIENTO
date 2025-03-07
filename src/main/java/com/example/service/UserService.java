@@ -1,18 +1,19 @@
 package com.example.service;
 
 import com.example.model.User;
-import reactor.core.publisher.Flux;
-import reactor.core.publisher.Mono;
+import org.springframework.stereotype.Service;
 
+@Service
 public class UserService {
 
-    public Flux<User> getUsers() {
-        return Flux.just(
-                new User("Alice", "alice@example.com"),
-                new User("Bob", "bob@example.com"));
-    }
-
-    public Mono<User> getUserById(String id) {
-        return Mono.just(new User("Charlie", "charlie@example.com"));
+    // Simulamos la búsqueda de usuarios en memoria
+    public User findByUsername(String username) {
+        if ("user".equals(username)) {
+            User user = new User();
+            user.setUsername("user");
+            user.setPassword("password"); // Contraseña codificada (en un caso real, usaríamos un PasswordEncoder)
+            return user;
+        }
+        return null; // Si no se encuentra el usuario
     }
 }

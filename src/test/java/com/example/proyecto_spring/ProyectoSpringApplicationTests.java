@@ -9,5 +9,4 @@ class ProyectoSpringApplicationTests {
 	@Test
 	void contextLoads() {
 	}
-
 }
